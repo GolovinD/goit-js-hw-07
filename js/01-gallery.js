@@ -42,11 +42,11 @@ function onGalleryClick(event) {
         console.log(imgLarge);
 
         let modalWindow = basicLightbox.create(`
-       <div class="modal">
+       
         <img
         src=${imgLarge} 
         />
-        </div>`);
+      `);
 
         modalWindow.show();
 
