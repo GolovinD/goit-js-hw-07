@@ -36,11 +36,17 @@ function onGalleryClick(event) {
     if (event.target.classList.contains('gallery__image')) {
         const imgLarge = event.target.dataset.source;
         
-        const modalWindow = basicLightbox.create(`
-               <img
-        src=${imgLarge} 
-        />
-      `);
-        modalWindow.show()         
+        const modalWindow = basicLightbox.create(
+        `<img src=${imgLarge} />`);
+        modalWindow.show();   
+        
+        document.addEventListener("keydown", closeModal);
+        function closeModal(event) {
+           if (event.code === "Escape") {
+            modalWindow.close();
+            document.removeEventListener("keydown", closeModal);
+           }  
+        }              
     }
-}
+};
+
