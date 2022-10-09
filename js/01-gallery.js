@@ -5,7 +5,7 @@ console.log(galleryItems);
 
 const galleryRef = document.querySelector('.gallery') 
 
-const makeGallery = galleryItems => {
+function makeGallery(galleryItems) {
    
     return galleryItems.map(item => {
         const galleryItem = document.createElement('div');
@@ -22,15 +22,11 @@ const makeGallery = galleryItems => {
         galleryImg.alt = (item.description);
         galleryImg.setAttribute ('data-source', item.original);
         galleryLink.appendChild(galleryImg);
-        
-        
-        
-        galleryRef.append(galleryItem);
-        return galleryItem;
-        
+                       
+        galleryRef.append(galleryItem);        
     });
 }
-console.log(basicLightbox);
+
 makeGallery(galleryItems);
 
 galleryRef.addEventListener('click', onGalleryClick);
@@ -39,33 +35,12 @@ function onGalleryClick(event) {
     event.preventDefault();
     if (event.target.classList.contains('gallery__image')) {
         const imgLarge = event.target.dataset.source;
-        console.log(imgLarge);
-
-        let modalWindow = basicLightbox.create(`
-       
-        <img
+        
+        const modalWindow = basicLightbox.create(`
+               <img
         src=${imgLarge} 
         />
       `);
-
-        modalWindow.show();
-
-//       const instance = basicLightbox.create(`
-//     <div class="modal">
-//         <p>
-//             Your first lightbox with just a few lines of code.
-//             Yes, it's really that simple.
-//         </p>
-//     </div>
-// `)
-
-// instance.show()  
-        
-        
-        
-       
+        modalWindow.show()         
     }
-
 }
-
-
